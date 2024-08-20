@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = "./gen";
+
+service ThumbnailLoader {
+    rpc Load (ThumbnailRequest) returns (ThumbnailResponse);
+}
+
+message ThumbnailRequest {
+    string link = 1;
+}
+
+message ThumbnailResponse {
+    bytes thumbnail = 1;
+}
