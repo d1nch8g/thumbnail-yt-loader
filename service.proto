@@ -7,7 +7,7 @@ service ThumbnailLoader {
 }
 
 message ThumbnailRequest {
-    string link = 1;
+    string uuid = 1;
 }
 
 message ThumbnailResponse {
