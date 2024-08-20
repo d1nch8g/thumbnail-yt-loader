@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"strings"
 	"thumbnail-yt-loader/gen"
-	"time"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -16,11 +16,15 @@ import (
 func main() {
 	if len(os.Args) > 1 {
 		os.Args = os.Args[1:]
+		for i := range os.Args {
+			if strings.Contains(os.Args[i], "watch?v=") {
+				os.Args[i] = strings.Split(os.Args[i], "watch?v=")[1]
+			}
+		}
 		fmt.Println("Loading thumbnails for following uuid's:", os.Args)
 
 		opts := []grpc.DialOption{
 			grpc.WithTransportCredentials(insecure.NewCredentials()),
-			grpc.WithTimeout(time.Hour),
 		}
 
 		conn, err := grpc.NewClient("localhost:8092", opts...)
@@ -39,7 +43,6 @@ func main() {
 				panic(err)
 			}
 			os.WriteFile(fmt.Sprintf("%s.png", uuid), resp.Thumbnail, os.ModePerm)
-
 		}
 	}
 }
