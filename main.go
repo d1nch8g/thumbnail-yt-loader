@@ -17,6 +17,8 @@ func main() {
 	}
 	var opts []grpc.ServerOption
 
+	fmt.Println("Starting new thumbnail loader service...")
+
 	grpcServer := grpc.NewServer(opts...)
 
 	gen.RegisterThumbnailLoaderServer(grpcServer, &service.LoaderService{})

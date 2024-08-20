@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"fmt"
 	"thumbnail-yt-loader/gen"
 	"thumbnail-yt-loader/loader"
 )
@@ -15,5 +16,6 @@ func (s *LoaderService) Load(ctx context.Context, r *gen.ThumbnailRequest) (*gen
 	if err != nil {
 		return nil, err
 	}
+	fmt.Printf("Thumbnail for %s loaded...\n", r.Uuid)
 	return &gen.ThumbnailResponse{Thumbnail: result}, nil
 }
