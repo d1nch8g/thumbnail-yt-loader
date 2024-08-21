@@ -20,12 +20,3 @@ To run file located in `cmd` folder,
 ```
 go run cmd/main.go mbeT8mpmtHA hu-q2zYwEYs
 ```
-
-### Run service in docker
-
-Execute following command:
-
-```
-docker build -t ion.lc/d1nch8g/thumbnail-yt-loader .
-docker run -p 8092:8092 ion.lc/d1nch8g/thumbnail-yt-loader
-```
